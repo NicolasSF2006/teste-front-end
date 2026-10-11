@@ -1,0 +1,49 @@
+@use 'tokens' as *;
+.section-heading { position: relative; display: flex; align-items: center; gap: 34px; max-width: 1138px; margin-inline: auto; height: 45px;
+  &::before, &::after { content: ''; height: 1px; background: #dedede; flex: 1; }
+  h2 { color: $blue; font-size: 30px; line-height: 45px; font-weight: 700; text-align: center; white-space: nowrap; }
+  &--plain { justify-content: center; max-width: none; &::before, &::after { display: none; } }
+}
+.product-tabs { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 4px; margin-bottom: 24px;
+  button { height: 40px; background: #fff; border: 1px solid #bdbdbd; color: #3b3b3b; margin-right: -1px; font-size: 16px; line-height: 16px; &.active { font-weight: 700; color: $blue; } &:hover { background: #f4f4ff; } }
+}
+.view-all { display: block; margin: 4px auto 24px; padding: 0; border: 0; background: none; height: 23px; font-size: 16px; line-height: 23px; font-weight: 600; }
+.carousel-wrapper { display: flow-root; position: relative; min-height: 500px; }
+.product-carousel { --carousel-gutter: 12px; display: flex; overflow-x: auto; gap: 18px; padding: 20px calc(var(--carousel-gutter) + 5px) 24px; margin: -20px calc(-1 * var(--carousel-gutter)) -24px; scroll-padding-inline: calc(var(--carousel-gutter) + 5px); scroll-snap-type: x mandatory; scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+.product-card { flex: 0 0 calc((100% - 54px) / 4); min-width: 0; min-height: 500px; border-radius: 10px; padding: 22px 12px 16px; background: #fff; box-shadow: 0 3px 19px #00000038; scroll-snap-align: start; cursor: pointer; display: flex; flex-direction: column;
+  &__image { display: flex; align-items: center; justify-content: center; height: 240px; flex-shrink: 0; border: 0; background: #fff; padding: 0; width: 100%; img { width: calc(100% - 2px); height: 228px; object-fit: contain; transform: translateY(4px); } }
+  &__body { width: calc(100% - 4px); display: flex; flex-direction: column; flex: 1; padding-top: 7px; }
+  &__name { font-size: 15px; line-height: 23px; font-weight: 400; height: 46px; overflow: hidden; button { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; padding: 0; border: 0; background: none; width: 100%; text-align: left; font: inherit; color: inherit; } }
+  &__previous-price { height: 24px; margin-top: 14px; }
+  &__price { font-size: 20px; line-height: 30px; font-weight: 700; }
+  &__installment { font-size: 12px; line-height: 18px; margin-top: 2px; white-space: nowrap; }
+  &__shipping { color: $blue; font-size: 12px; line-height: 18px; margin-top: 7px; margin-bottom: 12px; }
+  .purchase-button { margin-top: auto; }
+}
+.purchase-button { display: inline-flex; align-items: center; justify-content: center; height: 44px; width: 100%; border: 0; border-radius: 4px; font-size: 14px; font-weight: 700; background: $blue; color: #fff; text-transform: uppercase; &:hover { background: #28358f; } }
+.carousel-arrow { position: absolute; z-index: 2; top: calc(50% - 4px); display: grid; place-items: center; width: 32px; height: 32px; background: #fff; border: 0; border-radius: 50%; box-shadow: 0 2px 4px #0003; color: #777; font-family: Arial, sans-serif; font-size: 30px; line-height: 24px;
+  &--left { left: -42px; } &--right { right: -42px; }
+}
+.shelf-feedback { min-height: 500px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; text-align: center; color: #676767; .purchase-button { width: auto; padding-inline: 24px; } }
+@media (max-width: 1350px) { .carousel-arrow--left { left: -16px; } .carousel-arrow--right { right: -16px; } }
+@media (max-width: 1000px) {
+  .product-card { flex-basis: calc((100% - 36px) / 3); }
+  .product-tabs button { font-size: 13px; }
+}
+@media (max-width: 750px) {
+  .product-card { flex-basis: calc((100% - 18px) / 2); }
+  .section-heading { gap: 16px; h2 { font-size: 24px; white-space: normal; line-height: 1.3; } }
+}
+@media (max-width: 500px) {
+  .product-card { flex-basis: 85%; }
+  .product-tabs { display: flex; overflow: auto; padding-bottom: 2px; button { flex: 0 0 140px; } }
+  .section-heading h2 { font-size: 22px; }
+  .carousel-arrow--left { left: -10px; } .carousel-arrow--right { right: -10px; }
+}
+
+.view-all + .carousel-wrapper {
+  min-height: 501px;
+  .product-carousel { transform: translateY(.5px); }
+}

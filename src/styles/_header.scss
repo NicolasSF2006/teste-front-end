@@ -1,0 +1,37 @@
+@use 'tokens' as *;
+.site-header { height: 144px; background: #fff; }
+.benefits { height: 32px; display: flex; align-items: center; justify-content: center; gap: 119px; position: relative;
+  &::after { content: ''; position: absolute; bottom: 0; inset-inline: 0; height: 1px; background: url('/assets/header-Line16.svg') center; }
+  li { display: flex; gap: 9px; align-items: center; color: $gray; font-size: 12px; font-weight: 500; white-space: nowrap; }
+  strong { color: $nav-blue; font-weight: 600; }
+}
+.header-main { height: 72px; display: grid; grid-template-columns: 1fr 630px 1fr; align-items: center; border-bottom: 1px solid #f0f0f0; }
+.header-logo { width: fit-content; }
+.search { display: flex; align-items: center; background: #f6f5f2; border-radius: 10px; height: 48px; padding: 0 24px 0 16px;
+  input { min-width: 0; flex: 1; border: 0; background: transparent; color: $text; font-size: 14px; font-weight: 500; padding: 0; height: 100%; &::placeholder { color: $gray; opacity: 1; } }
+  button { background: none; border: none; padding: 0; margin-left: 12px; }
+}
+.header-actions { display: flex; align-items: center; justify-content: flex-end; gap: 32px; margin-left: 32px;
+  .orders-icon { transform: scaleX(-1); }
+}
+.cart { position: relative; .cart-count { position: absolute; top: -7px; right: -7px; min-width: 18px; border-radius: 50%; padding: 2px; background: $blue; color: #fff; text-align: center; font-size: 10px; font-weight: 600; } }
+.main-nav { height: 40px; display: flex; align-items: center; justify-content: space-evenly; gap: 20px; box-shadow: 0 8px 16px #3930131f;
+  a, > span { display: flex; align-items: center; gap: 12px; color: $gray; font-size: 12px; font-weight: 600; text-transform: uppercase; white-space: nowrap; }
+  a:hover, a.active { color: $nav-blue; }
+}
+@media (max-width: 1200px) {
+  .header-main { grid-template-columns: 170px 1fr auto; gap: 24px; }
+  .header-actions { gap: 20px; margin-left: 0; }
+  .benefits { gap: 64px; }
+}
+@media (max-width: 800px) {
+  .site-header { height: auto; }
+  .benefits { gap: 24px; li { font-size: 10px; gap: 4px; } }
+  .header-main { grid-template-columns: 1fr auto; height: auto; padding: 18px 0; gap: 16px; }
+  .search { grid-column: 1 / -1; grid-row: 2; }
+  .main-nav { overflow-x: auto; justify-content: flex-start; padding-inline: 12px; gap: 32px; }
+}
+@media (max-width: 500px) {
+  .benefits { justify-content: flex-start; overflow: auto; gap: 24px; li { flex-shrink: 0; } }
+  .header-actions { gap: 16px; > span:first-child { display: none; } }
+}
